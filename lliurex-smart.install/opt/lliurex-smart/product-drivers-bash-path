@@ -1,0 +1,36 @@
+# Auto-generated file. DO NOT EDIT
+if [[ "x$BASH" == "x" ]]; then
+# Do not run in zsh or other shells
+        return
+fi
+
+function __autopackage_addBashPath
+{
+        local name=$1
+        local path=$2
+        local append=$3
+        local kind
+        local tmp
+        local array
+        declare -a array
+
+        local IFS=':'
+        array=(${!name});
+        for DIR in "${array[@]}"; do
+                if [[ "$DIR" = "$path" ]]; then
+                        return 0
+                fi
+        done
+
+        if [[ "${!name}" = "" ]]; then
+                eval "export $name=\"$path\""
+        elif $append; then
+                eval "export $name=\"$path:\$$name\""
+        else
+                eval "export $name=\"\$$name:$path\""
+        fi
+        return 0
+}
+
+#__autopackage_addBashPath "PATH" "/opt/SMART\ Technologies/SMART\ Product\ Drivers/bin" true
+__autopackage_addBashPath "PATH" "/opt/lliurex-smart/smart-product-drivers" true

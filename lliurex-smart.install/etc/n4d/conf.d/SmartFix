@@ -1,0 +1,6 @@
+[SETUP]
+type=python
+path=SmartFix.py
+class=SmartFix
+[METHODS]
+startup=adm,admins

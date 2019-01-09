@@ -1,0 +1,114 @@
+#!/usr/bin/env python
+
+import sys
+import tempfile
+import os
+import shutil
+
+DEBUG=True
+
+
+NOTEBOOK_PATH_ORIG="/opt/SMART Technologies/.store/smart-notebook/install/bash-path"
+NOTEBOOK_PATH_LLIUREX="/opt/lliurex-smart/notebook-bash-path"
+
+DRIVERS_PATH_ORIG="/opt/SMART Technologies/.store/smart-product-drivers/install/bash-path"
+DRIVERS_PATH_LLIUREX="/opt/lliurex-smart/product-drivers-bash-path"
+
+PROFILE="/etc/profile"
+BASHRC="/etc/bash.bashrc"
+
+class SmartFix:
+	
+	def __init__(self):
+
+		self.fix_profile()
+		self.fix_bashrc()
+
+	#def init
+	
+	def dprint(self,data):
+		
+		if DEBUG:
+			print("  [SmartFix] %s"%data)
+		
+	#def dprint
+	
+	def freplace(self,bad_str,good_str,filepath):
+		
+		found=False
+
+		try:
+		
+			f=open(filepath)
+			lines=f.readlines()
+			f.close()
+			
+			found=False
+			
+			new_lines=[]
+			for line in lines:
+				if NOTEBOOK_PATH_ORIG in line:
+					found=True
+					line=line.replace(NOTEBOOK_PATH_ORIG,NOTEBOOK_PATH_LLIUREX)
+					if line in new_lines:
+						line=""
+					
+				if DRIVERS_PATH_ORIG in line:
+					found=True
+					line=line.replace(DRIVERS_PATH_ORIG,DRIVERS_PATH_LLIUREX)
+					if line in new_lines:
+						line=""
+				
+				if line!="":
+					new_lines.append(line)
+				
+			if not found:
+				return False
+	
+			self.dprint("Fixing %s ..."%filepath)
+			
+			tmp,tmp_path=tempfile.mkstemp()
+			f = open(tmp_path,'w')
+			f.writelines(new_lines)
+			f.close()
+			
+			self.uchmod(tmp_path,0644)
+			shutil.copy(tmp_path,filepath)
+			os.remove(tmp_path)
+
+
+			return True
+			
+		except Exception as e:
+			self.dprint("[!] Error fixing %s: %s"%(filepath,e))
+
+		return False
+		
+	#def fix_profile
+	
+	def fix_profile(self):
+		
+		self.freplace(NOTEBOOK_PATH_ORIG,NOTEBOOK_PATH_LLIUREX,PROFILE)
+	
+	def fix_bashrc(self):
+		
+		self.freplace(DRIVERS_PATH_ORIG,DRIVERS_PATH_LLIUREX,BASHRC)
+		
+	#def fix_bashrc
+	
+		
+	def uchmod(self,filepath,mode):
+
+		prevmask = os.umask(0)
+		os.chmod(filepath,mode)
+		os.umask(prevmask)
+		
+	#def uchmod
+	
+#class SmartFix
+
+
+if __name__=="__main__":
+
+	sf=SmartFix()
+	

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+LANG_FOR_SMART=$(echo $LANG | sed -e "s%@.*%%g")
+
+LC_ALL=${LANG_FOR_SMART} "/opt/SMART Technologies/Notebook Software/bin/Notebook/notebook.bkp"
