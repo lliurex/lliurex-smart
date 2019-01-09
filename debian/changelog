@@ -1,0 +1,196 @@
+lliurex-smart (0.10.21) xenial; urgency=high
+
+  * Adding upgrade option, even if it does nothing
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 26 Feb 2018 09:03:52 +0100
+
+lliurex-smart (0.10.20) xenial; urgency=high
+
+  * Fixed postinst
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 05 Feb 2018 14:17:46 +0100
+
+lliurex-smart (0.10.19) xenial; urgency=high
+
+  * Adding lliurex-up postactions script to fix smart path in case 
+    smart-product-drivers fails to install
+  * Adding n4d plugin to execute smart-fixer on every boot
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 29 Jan 2018 14:47:56 +0100
+
+lliurex-smart (0.10.18) xenial; urgency=high
+
+  * More agressive postinsts 
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 20 Oct 2017 14:17:13 +0200
+
+lliurex-smart (0.10.17) xenial; urgency=high
+
+  * Smart doesn't make life any easy. We have to register interest in 
+    bash path files.
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 20 Oct 2017 12:33:10 +0200
+
+lliurex-smart (0.10.16) xenial; urgency=high
+
+  * Fixing profile in lliurex-smart64 as well
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Fri, 23 Jun 2017 11:37:09 +0200
+
+lliurex-smart (0.10.15) xenial; urgency=high
+
+  * Prerm fixes
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Thu, 12 Jan 2017 09:02:54 +0100
+
+lliurex-smart (0.10.14) xenial; urgency=high
+
+  * Diversions changes. Should be done now
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 10 Jan 2017 13:18:45 +0100
+
+lliurex-smart (0.10.13) xenial; urgency=high
+
+  * Removed links file and using postinst instead.
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 09 Jan 2017 15:21:58 +0100
+
+lliurex-smart (0.10.12) xenial; urgency=high
+
+  * Trying to fix profile
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Mon, 09 Jan 2017 11:53:31 +0100
+
+lliurex-smart (0.10.11) xenial; urgency=high
+
+  * Add package build for amd64 architecture
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Fri, 29 Apr 2016 10:10:22 +0200
+
+lliurex-smart (0.10.10) xenial; urgency=high
+
+  * New release migrate
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Fri, 12 Feb 2016 15:03:46 +0100
+
+lliurex-smart (0.10.10) trusty; urgency=high
+
+  * Add new dependences for 64 Bits 
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Fri, 12 Feb 2016 14:51:35 +0100
+
+lliurex-smart (0.10.9) trusty; urgency=high
+
+  * Remove dependence from zero-lliurex-bar
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Tue, 29 Sep 2015 09:30:23 +0200
+
+lliurex-smart (0.10.8) trusty; urgency=high
+
+  * Upgrade architecture 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 22 Sep 2015 09:52:07 +0200
+
+lliurex-smart (0.10.7) trusty; urgency=medium
+
+  * Upgrading for trusty
+
+ -- Daniel Duran Vecino <daduve@gmail.com>  Fri, 16 Jan 2015 12:00:49 +0100
+
+lliurex-smart (0.10.6) precise; urgency=low
+
+  * Fixed changelog
+
+ -- Vicente Balaguer Domenech <vbalaguer.gva@gmail.com>  Mon, 11 Nov 2013 13:02:41 +0100
+
+lliurex-smart (0.10.5ubuntu1) precise; urgency=low
+
+  * Fixed lliurex-smart script to use LC_ALL instead of LANG 
+
+ -- Vicente Balaguer Domenech <vbalaguer.gva@gmail.com>  Mon, 11 Nov 2013 13:00:28 +0100
+
+lliurex-smart (0.10.5) precise; urgency=high
+
+  * Removed dependence (flash is already installed) 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Mon, 04 Nov 2013 09:21:26 +0100
+
+lliurex-smart (0.10.4) precise; urgency=high
+
+  * Now upgrade to add dependence 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 22 Oct 2013 18:53:06 +0200
+
+lliurex-smart (0.10.3) precise; urgency=high
+
+  * Added postrm to remove links 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 22 Oct 2013 16:25:53 +0200
+
+lliurex-smart (0.10.1) precise; urgency=high
+
+  * Fixed postinstallation script to not make the links 
+    if them already exists. 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 22 Oct 2013 09:23:38 +0200
+
+lliurex-smart (0.10) precise; urgency=high
+
+  * Updated dependences, now works with
+    zero-center. 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Fri, 18 Oct 2013 10:41:31 +0200
+
+lliurex-smart (0.9) precise; urgency=high
+
+  * Added valencian support 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 16 Oct 2013 12:06:39 +0200
+
+lliurex-smart (0.8) precise; urgency=high
+
+  * Added flashplugin installer
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 15 Oct 2013 17:41:17 +0200
+
+lliurex-smart (0.7) precise; urgency=high
+
+  * Updated LANG
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 19 Sep 2013 08:40:58 +0200
+
+lliurex-smart (0.6) precise; urgency=high
+
+  * Updated urgency 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 12 Sep 2013 09:32:14 +0200
+
+lliurex-smart (0.5) precise; urgency=low
+
+  * Added smart-product-drivers as a dependence
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 12 Sep 2013 09:30:12 +0200
+
+lliurex-smart (0.4) precise; urgency=high
+
+  * Added dependences
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 18 Jul 2013 09:05:13 +0200
+
+lliurex-smart (0.3) precise; urgency=high
+
+  * Fixed binary, thanks to Raurodse 
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Thu, 18 Jul 2013 08:16:36 +0200
+
+lliurex-smart (0.2) precise; urgency=high
+
+  * Added dependency
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Wed, 17 Jul 2013 10:41:10 +0200
+
+lliurex-smart (0.1) precise; urgency=high
+
+  * First Version of lliurex-smart
+
+ -- Angel Berlanas Vicente <angel.berlanas@gmail.com>  Tue, 09 Nov 2010 13:13:10 +0100

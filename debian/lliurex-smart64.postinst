@@ -1,0 +1,109 @@
+#!/bin/sh
+
+PKG="lliurex-smart"
+
+SMART_NOTEBOOK="/opt/SMART Technologies/Notebook Software/bin/Notebook/notebook"
+LLIUREX_SMART="/usr/bin/lliurex-notebook"
+
+# OLD VARS
+
+BASH_MOD1="/opt/SMART Technologies/.store/smart-notebook/install/bash-path"
+BASH_MOD1_DIVERTED="$BASH_MOD1.diverted"
+BASH_MOD2="/opt/SMART Technologies/.store/smart-product-drivers/install/bash-path"
+BASH_MOD2_DIVERTED="$BASH_MOD2.diverted"
+
+# NEW VARS
+
+LLIUREX_NOTEBOOK_LINK="/opt/lliurex-smart/notebook-software"
+LLIUREX_SMARTDRIVERS_LINK="/opt/lliurex-smart/smart-product-drivers"
+
+NOTEBOOK_PATH="/opt/SMART Technologies/Notebook Software/bin"
+SMARTDRIVERS_PATH="/opt/SMART Technologies/SMART Product Drivers/bin"
+
+
+
+lliurex_fixes(){
+
+
+	if [ ! -L "$LLIUREX_NOTEBOOK_LINK" ]; then
+		ln -s "$NOTEBOOK_PATH" "$LLIUREX_NOTEBOOK_LINK"
+	fi
+
+	if [ ! -L "$LLIUREX_SMARTDRIVERS_LINK" ]; then
+		ln -s "$SMARTDRIVERS_PATH" "$LLIUREX_SMARTDRIVERS_LINK"
+	fi
+	
+	/usr/sbin/lliurex-smart-path-fixer || true
+
+}
+
+case "$1" in 
+
+	configure)
+		
+		# Sanity checks, testing previous installations
+
+		if [ ! -L "${SMART_NOTEBOOK}" ]; then
+
+			mv "${SMART_NOTEBOOK}" "${SMART_NOTEBOOK}".bkp
+			ln -s "${LLIUREX_SMART}" "${SMART_NOTEBOOK}"
+
+		else
+
+			echo "[ LliureX Smart ] : Link is done, nothing to do"
+			if [ -L "${SMART_NOTEBOOK}.bkp" ]; then
+				echo "[ LliureX Smart ] , your origins are dark ... smart-notebook reinstall is needed"
+				echo "[ LliureX Smart ] , for if the flies ...remove the loop of the dead"
+				echo "[ Loop of the Dead detected... removing it ]"
+				rm -f "${SMART_NOTEBOOK}.bkp" || true
+			fi
+
+		fi
+		
+		# UNDO OLD DIVERSIONS
+		
+		if dpkg --compare-versions "$2" lt 0.10.19; then
+        		
+			if [ -f "$BASH_MOD1_DIVERTED" ]; then
+				rm -rf "$BASH_MOD1"
+				dpkg-divert --remove --package ${PKG} --rename --divert "$BASH_MOD1_DIVERTED" "$BASH_MOD1"
+			fi
+
+			if [ -f "$BASH_MOD2_DIVERTED" ]; then
+				rm -rf "$BASH_MOD2"
+				dpkg-divert --remove --package ${PKG} --rename --divert "$BASH_MOD2_DIVERTED" "$BASH_MOD2"
+			fi
+			
+		fi
+		
+		# ###################### #
+
+		lliurex_fixes
+
+	;;
+		
+	triggered)
+
+		lliurex_fixes
+		exit 0
+		
+		;;
+
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+	
+		exit 0
+		;;
+
+	*)
+		
+		echo "postinst called with unknown argument \`$1'" >&2
+		exit 0
+	;;
+
+esac
+
+
+#DEBHELPER#
+
+exit 0

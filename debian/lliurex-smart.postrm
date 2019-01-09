@@ -1,0 +1,36 @@
+#!/bin/sh
+
+
+SMART_NOTEBOOK="/opt/SMART Technologies/Notebook Software/bin/Notebook/notebook"
+LLIUREX_SMART="/usr/bin/lliurex-notebook"
+
+
+
+case "$1" in 
+
+	remove|purge)
+		
+		# Sanity checks, testing previous installations
+
+		if [ -L "${SMART_NOTEBOOK}" ]; then
+
+			echo "[ LliureX Smart ] : Link must be removed"
+			if [ -f "${SMART_NOTEBOOK}.bkp" ]; then
+				mv "${SMART_NOTEBOOK}.bkp" "${SMART_NOTEBOOK}"
+			fi
+
+		fi
+		;;
+
+	*)
+		
+		echo "prerm called with unknown argument \`$1'" >&2
+
+	;;
+
+esac
+
+
+#DEBHELPER#
+
+exit 0

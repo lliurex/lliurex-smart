@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e
+
+
+case "$1" in
+    remove)
+	PKG="lliurex-smart"
+	BASH_MOD1="/opt/SMART Technologies/.store/smart-notebook/install/bash-path"
+	BASH_MOD1_DIVERTED="$BASH_MOD1.diverted"
+	BASH_MOD2="/opt/SMART Technologies/.store/smart-product-drivers/install/bash-path"
+	BASH_MOD2_DIVERTED="$BASH_MOD2.diverted"
+	
+	LLIUREX_NOTEBOOK_LINK="/opt/lliurex-smart/notebook-software"
+	LLIUREX_SMARTDRIVERS_LINK="/opt/lliurex-smart/smart-product-drivers"
+
+	NOTEBOOK_PATH="/opt/SMART Technologies/Notebook Software/bin"
+	SMARTDRIVERS_PATH="/opt/SMART Technologies/SMART Product Drivers/bin"
+
+	# DISABLE DIVERSIONS
+	
+	if [ -f "$BASH_MOD1_DIVERTED" ]; then
+		rm -rf "$BASH_MOD1"
+		dpkg-divert --remove --package ${PKG} --rename --divert "$BASH_MOD1_DIVERTED" "$BASH_MOD1"
+	fi
+
+	if [ -f "$BASH_MOD2_DIVERTED" ]; then
+		rm -rf "$BASH_MOD2"
+		dpkg-divert --remove --package ${PKG} --rename --divert "$BASH_MOD2_DIVERTED" "$BASH_MOD2"
+	fi
+	
+	# ################## #
+	
+	
+	if [ -L "$LLIUREX_NOTEBOOK_LINK" ];then
+		rm -rf "$LLIUREX_NOTEBOOK_LINK"
+	fi
+
+	if [ -L "$LLIUREX_SMARTDRIVERS_LINK" ];then
+		rm -rf "$LLIUREX_SMARTDRIVERS_LINK"
+	fi
+	
+    ;;
+
+    failed-upgrade)
+    ;;
+    
+    upgrade|deconfigure)
+    ;;
+
+    *)
+        #echo "prerm called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+
+
+#DEBHELPER#
+
+exit 0
