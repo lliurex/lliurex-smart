@@ -11,7 +11,3 @@
 
 %:
 	dh $@ 
-
-override_dh_auto_install:
-	dllxh_install
-	dh_auto_install
